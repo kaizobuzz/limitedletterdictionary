@@ -10,10 +10,10 @@ def deduplicate_word_list(words):
     new_words = {}
     for word in words:
         if simplify_word(word) in new_words:
-            new_words[simplify(word)] += 1
+            new_words[simplify_word(word)] += 1
         else:
-            new_words[simplify(word)] = 1
+            new_words[simplify_word(word)] = 1
     return new_words
 
 def simplify_word(word):
-    return "".join(set(word)).sort()
+    return "".join(sorted("".join(set(word))))

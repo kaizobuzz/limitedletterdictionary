@@ -14,6 +14,8 @@ def main():
     words = filter(lambda x: word_fits_in_alphabet(x, "merow"), words)
     print(list(words))
 
+    print(wordlist.deduplicate_word_list(wordlist.get_wordlist_from_file()))
+
 if __name__ == "__main__":
     main()
 
