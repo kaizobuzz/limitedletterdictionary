@@ -3,7 +3,8 @@ def get_wordlist_from_file(name="words.txt"):
     words = []
     with open(name, "r") as f:
         while (x := f.readline()) != "":
-            words.append(x.strip())
+            word=x.lower().strip()
+            words.append(word.replace('\'', ''))
         return words
 
 def deduplicate_word_list(words):
