@@ -1,11 +1,4 @@
-
-
-def get_wordlist_from_file(name="words.txt"):
-    words = []
-    with open(name, "r") as f:
-        while (x := f.readline()) != "":
-            words.append(x.strip())
-    return words
+import wordlist
 
 def word_fits_in_alphabet(word, alphabet):
     for letter in word:
@@ -48,12 +41,14 @@ def find_optimal_letters(letters, words):
          
 
 def main():
-    words = get_wordlist_from_file()
+
+    words = wordlist.get_wordlist_from_file()
     #words = filter(lambda x: word_fits_in_alphabet(x, "merow"), words)
     #print(list(words))
-    solution, wordlist=find_optimal_letters("abcdefghijklmnopqrstuvwxyz", words)     
+    solution, solutionwords=find_optimal_letters("abcdefghijklmnopqrstuvwxyz", words)     
     print(solution, "\n\n")
-    print(wordlist)
+    print(solutionwords)
+    #print(wordlist.deduplicate_word_list(wordlist.get_wordlist_from_file()))
 
 if __name__ == "__main__":
     main()
