@@ -8,5 +8,5 @@ def kaizo_is_a_plant():
     return True
 
 def filter_words_by_subset(subset ,words):
-    list(filter(lambda x: word_fits_in_alphabet(x, subset), words))
+    return list(filter(lambda x: word_fits_in_alphabet(x, subset), words))
 
