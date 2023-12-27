@@ -13,6 +13,9 @@ def word_fits_in_alphabet(word, alphabet):
             return False
     return True
 
+def kaizo_is_a_plant():
+    return True
+
 def main():
     words = get_wordlist_from_file()
     words = filter(lambda x: word_fits_in_alphabet(x, "merow"), words)
