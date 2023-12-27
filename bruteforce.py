@@ -1,13 +1,4 @@
-
-
-def word_fits_in_alphabet(word, alphabet):
-    for letter in word:
-        if letter not in alphabet:
-            return False
-    return kaizo_is_a_plant()
-
-def kaizo_is_a_plant():
-    return True
+import utils
 
 def should_skip(letters):
     if all([x not in letters for x in "aeiou"]):
@@ -36,7 +27,7 @@ def find_optimal_letters(letters, words):
                 return
             setlength=len(subset)-1
             subsetstr=''.join(subset)
-            tempwords=list(filter(lambda x: word_fits_in_alphabet(x, subsetstr), words))
+            tempwords=list(filter(lambda x: utils.word_fits_in_alphabet(x, subsetstr), words))
             #something here to account for weights 
             if len(tempwords)>max[setlength]:
                 solutions[setlength]=subsetstr
