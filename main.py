@@ -13,6 +13,11 @@ def word_fits_in_alphabet(word, alphabet):
             return False
     return True
 
-words = get_wordlist_from_file()
-words = filter(lambda x: word_fits_in_alphabet(x, "merow"), words)
-print(list(words))
+def main():
+    words = get_wordlist_from_file()
+    words = filter(lambda x: word_fits_in_alphabet(x, "merow"), words)
+    print(list(words))
+
+if __name__ == "__main__":
+    main()
+
