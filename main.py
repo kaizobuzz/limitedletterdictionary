@@ -30,7 +30,8 @@ def main():
         print(solution, "\n\n", solutionwords)
     elif selected_method == 2:
         solution, solutionwords, maxes, averages=nearest.find_good_letters(alphabet, words)
-        print(solutionwords, "\n", maxes, "\n\n", averages, "\n\n", solution)
+        #print(solutionwords, "\n") 
+        print(maxes, "\n\n", averages, "\n\n", solution)
     elif selected_method == 3:
         best_letters = genetic_algorithm.do_genetic_algorithm(words, 100, 10000)
         print(best_letters)

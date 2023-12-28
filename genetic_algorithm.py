@@ -1,7 +1,7 @@
 import random
 import utils
 import copy
-
+import time
 class Agent:
     def __init__(self, letters=None):
         # if letters is none it will initialize randomly, otherwise use the letters provided
@@ -23,6 +23,7 @@ class Agent:
         
 
 def do_genetic_algorithm(wordlist, num_agents, iterations):
+    start_time=time.time()
     # verify inputs
     if num_agents < 2:
         raise ValueError("too few agents")
@@ -37,6 +38,7 @@ def do_genetic_algorithm(wordlist, num_agents, iterations):
     for _ in range(num_agents):
         agents.append(Agent())
     for iter_num in range(iterations):
+        iteration_start_time=time.time()
         #sort agents by score
         agents.sort(key=sorting_key, reverse=True)
         
@@ -61,5 +63,7 @@ def do_genetic_algorithm(wordlist, num_agents, iterations):
         agents += new_agents
 
         print(f"Finished iteration {iter_num}/{iterations} with {num_agents} agents. \n best score so far: {best_score}, with letters {best_letters}")
-        agents.sort(key=sorting_key, reverse=True)
+        print("Time since start: ", time.time()-start_time,"s")
+        print("Time since last iteration: ", time.time()-iteration_start_time,"s")
+    agents.sort(key=sorting_key, reverse=True)
     return agents[0].get_letter_list()

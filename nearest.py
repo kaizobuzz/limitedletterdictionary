@@ -1,6 +1,8 @@
 import utils
+import time
 
 def find_good_letters(letters, words):
+    start_time=time.time()
     letters=list(letters)
     subset = []
     maxes = [0]*len(letters)
@@ -26,4 +28,5 @@ def find_good_letters(letters, words):
     for max in maxes:
         averages[i]=max/(i+1)
         i+=1
+    print("time taken: ", time.time()-start_time, "s")
     return subset, wordlists, maxes, averages
