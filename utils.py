@@ -13,6 +13,9 @@ def filter_words_by_subset(subset ,words):
 def get_num_of_words_by_subset_with_cache(cache, subset, words):
     found, val=cache.find(subset)
     if found:
+        cache.found+=1
+        if cache.found%1000==0:
+            print("\nnumber of things found in cache:", cache.found, "\n")
         return val
     val=len(filter_words_by_subset(subset, words))
     cache.addnode(subset, val)
@@ -30,7 +33,8 @@ class LRUCache:
     def __init__(self, capacity):
         self.capacity: int=capacity
         self.size: int=0
-        self.cache={} 
+        self.cache={}
+        self.found: int=0
         self.alivest=Node(0, 0)
         self.deadest=Node(0, 0)
         self.alivest.deader=self.deadest
@@ -44,12 +48,17 @@ class LRUCache:
         node.deader=self.alivest.deader
     def find(self, letters):
         if letters in self.cache:
+            """print("cache letters:", self.cache[letters])
+            print(self.cache[letters].key, self.cache[letters].val)
+            print(self.cache[letters].deader)
+            print(self.cache[letters].aliver)"""
             node=self.remove(self.cache[letters])
             self.add(node)  
-            return True, self.cache[letters] 
+            return True, self.cache[letters].val 
         return False, None
     def addnode(self, key, val):
         node=Node(key, val)
+        self.add(node)
         self.size+=1
         self.cache[key]=node
         if self.size>self.capacity:
