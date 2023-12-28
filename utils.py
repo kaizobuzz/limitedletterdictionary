@@ -9,8 +9,16 @@ def kaizo_is_a_plant():
 
 def filter_words_by_subset(subset ,words):
     return list(filter(lambda x: word_fits_in_alphabet(x, subset), words))
-
-def get_num_of_words_by_subset_with_cache(cache, subset, words):
+def check_against_bitfields(subset, bitfields):
+    subsetbits=0
+    count=0
+    for letter in subset:
+        subsetbits|=1<<(ord(letter)-ord('a'))
+    for bitfield in bitfields:
+        if bitfield&~subsetbits==0:
+            count+=1 
+    return count
+def get_num_of_words_by_subset_with_cache(cache, subset, bitfields):
     found, val=cache.find(subset)
     if found:
         cache.found+=1
@@ -20,7 +28,7 @@ def get_num_of_words_by_subset_with_cache(cache, subset, words):
         if cache.found==33333:
             print(":33333 things found in cache")
         return val
-    val=len(filter_words_by_subset(subset, words))
+    val=check_against_bitfields(subset, bitfields)
     cache.addnode(subset, val)
     return val
 

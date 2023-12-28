@@ -24,7 +24,7 @@ def main():
         3: "french_scrabble.txt"
     }
     words = wordlist.get_wordlist_from_file(name=wordlistfilenames[selected_dictionary])
-
+    bitfields = wordlist.create_bitfields(words)
     if selected_method == 1:
         solution, solutionwords = bruteforce.find_optimal_letters(alphabet, words)
         print(solution, "\n\n", solutionwords)
@@ -37,7 +37,7 @@ def main():
     elif selected_method == 3:
         num_agents=100
         iterations=10000
-        best_letters = genetic_algorithm.do_genetic_algorithm(words, num_agents, iterations)
+        best_letters = genetic_algorithm.do_genetic_algorithm(bitfields, num_agents, iterations)
         print(best_letters)
 
     input("Press enter to close...")

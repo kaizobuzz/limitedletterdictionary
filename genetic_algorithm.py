@@ -22,7 +22,7 @@ class Agent:
         return self
         
 
-def do_genetic_algorithm(wordlist, num_agents, iterations):
+def do_genetic_algorithm(bitfields, num_agents, iterations):
     cache_capacity=500
     min_agents=2
     start_time=time.time()
@@ -32,7 +32,7 @@ def do_genetic_algorithm(wordlist, num_agents, iterations):
     #thing
     cache=utils.LRUCache(cache_capacity)
     def sorting_key(a):
-        return utils.get_num_of_words_by_subset_with_cache(cache, a.get_letter_list(), wordlist) / len(a.get_letter_list())
+        return utils.get_num_of_words_by_subset_with_cache(cache, a.get_letter_list(), bitfields) / len(a.get_letter_list())
     best_score=0
     best_letters=""
     # generate agents
