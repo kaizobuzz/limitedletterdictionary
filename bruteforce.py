@@ -20,7 +20,7 @@ def find_optimal_letters(letters, bitfields):
             count[0]+=1
             #just a printing statement
             if count[0]%10000==0: 
-                print(f"maxes: {maxes}, \n\nsolutions: {solutions} \n\nprogress: {count[0]/(2**26)}")
+                print(f"maxes: {maxes}, \n\nsolutions: {solutions} \n\nprogress: {(count[0]/(2**26))*100}%")
                 print(f"time spent so far: {time.time()-start_time}s")
                 print(f"Letters skipped: {num_skipped[0]} \n")
             if should_skip(letters):
