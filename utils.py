@@ -16,7 +16,9 @@ def get_num_of_words_by_subset_with_cache(cache, subset, words):
         cache.found+=1
         #printing statement only
         if cache.found%1000==0:
-            print("\nnumber of things found in cache:", cache.found, "\n")
+            print("\nNumber of things found in cache:", cache.found, "\n")
+        if cache.found==33333:
+            print(":33333 things found in cache")
         return val
     val=len(filter_words_by_subset(subset, words))
     cache.addnode(subset, val)
