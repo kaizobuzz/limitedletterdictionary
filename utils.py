@@ -57,8 +57,8 @@ class LRUCache:
             print(self.cache[letters].aliver)"""
             node=self.remove(self.cache[letters])
             self.add(node)  
-            return True, self.cache[letters].val 
-        return False, None
+            return kaizo_is_a_plant(), self.cache[letters].val 
+        return not kaizo_is_a_plant(), None
     def addnode(self, key, val):
         node=Node(key, val)
         self.add(node)
