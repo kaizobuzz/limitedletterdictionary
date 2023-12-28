@@ -30,6 +30,7 @@ def do_genetic_algorithm(wordlist, num_agents, iterations):
     def sorting_key(a):
         return len(utils.filter_words_by_subset(a.get_letter_list(), wordlist)) / len(a.get_letter_list())
     best_score=0
+    best_letters=""
     # generate agents
     agents = []
     for _ in range(num_agents):
@@ -39,17 +40,25 @@ def do_genetic_algorithm(wordlist, num_agents, iterations):
         agents.sort(key=sorting_key, reverse=True)
         
         best_score = sorting_key(agents[0])
+        best_letters = agents[0].get_letter_list()
 
-        #murder agents who underperform
+        #murder random agents, more likely to murder underperforming ones
+        agents_to_remove = []
+        for i in range(len(agents)):
+            if random.random() > (1-i/num_agents):
+                agents_to_remove.append(agents[i])
+        for agent in agents_to_remove:
+            agents.remove(agent)
         
-        num_agents_to_murder = len(agents) // 2
-        del agents[num_agents_to_murder:]
-        #modify well-performing agents
+        #refill array
         new_agents = []
-        for agent in agents:
-            new_agents.append(copy.deepcopy(agent).mutate())
+        num_new_agents_needed = num_agents - len(agents)
+        print(num_new_agents_needed)
+        while num_new_agents_needed > 0:
+            new_agents.append(copy.deepcopy(random.choice(agents)).mutate())
+            num_new_agents_needed -= 1
         agents += new_agents
 
-        print(f"Finished iteration {iter_num}/{iterations} with {num_agents} agents. \n best score so far: {best_score}")
+        print(f"Finished iteration {iter_num}/{iterations} with {num_agents} agents. \n best score so far: {best_score}, with letters {best_letters}")
     agents.sort(key=sorting_key, reverse=True)
     return agents[0].get_letter_list()
