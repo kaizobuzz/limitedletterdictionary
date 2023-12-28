@@ -27,7 +27,7 @@ def do_genetic_algorithm(wordlist, num_agents, iterations):
     if num_agents < 2:
         raise ValueError("too few agents")
     #thing
-    cache=utils.LRUCache(5000)
+    cache=utils.LRUCache(2000)
     def sorting_key(a):
         return utils.get_num_of_words_by_subset_with_cache(cache, a.get_letter_list(), wordlist) / len(a.get_letter_list())
     best_score=0

@@ -46,6 +46,8 @@ class LRUCache:
     def add(self, node):
         node.aliver=self.alivest
         node.deader=self.alivest.deader
+        self.alivest.deader=node
+        node.deader.aliver=node
     def find(self, letters):
         if letters in self.cache:
             """print("cache letters:", self.cache[letters])
