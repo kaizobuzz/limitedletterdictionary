@@ -32,6 +32,8 @@ def main():
         solution, solutionwords, maxes, averages=nearest.find_good_letters(alphabet, words)
         #print(solutionwords, "\n") 
         print(maxes, "\n\n", averages, "\n\n", solution)
+        solution, maxes, averages=nearest.find_good_letters_reverse(alphabet, words)
+        print(maxes, "\n\n", averages, "\n\n", solution)
     elif selected_method == 3:
         num_agents=100
         iterations=10000
