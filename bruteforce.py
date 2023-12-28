@@ -18,6 +18,7 @@ def find_optimal_letters(letters, words):
     def dfs(i):
         if i>=len(letters):
             count[0]+=1
+            #just a printing statement
             if count[0]%10000==0:
                 if count[0]%100000==0:
                     print("\n\n", wordlists, "\n\n")

@@ -14,6 +14,7 @@ def get_num_of_words_by_subset_with_cache(cache, subset, words):
     found, val=cache.find(subset)
     if found:
         cache.found+=1
+        #printing statement only
         if cache.found%1000==0:
             print("\nnumber of things found in cache:", cache.found, "\n")
         return val
@@ -25,8 +26,8 @@ def get_num_of_words_by_subset_with_cache(cache, subset, words):
 
 class Node:
     def __init__(self, key, val):
-        self.key=key
-        self.val=val
+        self.key: int=key
+        self.val: int=val
         self.deader: Node | None=None
         self.aliver: Node | None=None
 class LRUCache:

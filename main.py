@@ -33,7 +33,9 @@ def main():
         #print(solutionwords, "\n") 
         print(maxes, "\n\n", averages, "\n\n", solution)
     elif selected_method == 3:
-        best_letters = genetic_algorithm.do_genetic_algorithm(words, 100, 10000)
+        num_agents=100
+        iterations=10000
+        best_letters = genetic_algorithm.do_genetic_algorithm(words, num_agents, iterations)
         print(best_letters)
 
     input("Press enter to close...")
