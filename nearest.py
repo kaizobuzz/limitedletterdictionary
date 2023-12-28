@@ -24,7 +24,7 @@ def find_good_letters(letters, words):
     averages = [0.0]*len(maxes)
     for i, max in enumerate(maxes):
         averages[i]=max/(i+1)
-    print("time taken: ", time.time()-start_time, "s")
+    print(f"\nTime taken: {time.time()-start_time}s")
     return subset, wordlists, maxes, averages
 def find_good_letters_reverse(letters, words): 
     start_time=time.time()

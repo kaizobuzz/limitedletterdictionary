@@ -64,8 +64,8 @@ def do_genetic_algorithm(wordlist, num_agents, iterations):
             num_new_agents_needed -= 1
         agents += new_agents
 
-        print(f"Finished iteration {iter_num}/{iterations} with {num_agents} agents. \n best score so far: {best_score}, with letters {best_letters}")
-        print("Time since start: ", time.time()-start_time,"s")
-        print("Time since last iteration: ", time.time()-iteration_start_time,"s")
+        print(f"Finished iteration {iter_num}/{iterations} with {num_agents} agents. \nbest score so far: {best_score}, with letters {best_letters}")
+        print(f"Time since start: {time.time()-start_time}s")
+        print(f"Time since last iteration: {time.time()-iteration_start_time}s")
     agents.sort(key=sorting_key, reverse=True)
     return agents[0].get_letter_list()

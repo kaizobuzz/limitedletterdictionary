@@ -22,9 +22,9 @@ def find_optimal_letters(letters, words):
             if count[0]%10000==0:
                 if count[0]%100000==0:
                     print("\n\n", wordlists, "\n\n")
-                print(max, "\n\n\n", solutions, "\n\n", "progress: ", count[0]/(2**26))
-                print("time spent so far: ", time.time()-start_time, "s")
-                print("\n\n\n", num_skipped)
+                print(f"maxes: {max}, \n\nsolutions: {solutions} \n\nprogress: {count[0]/(2**26)}")
+                print(f"time spent so far: {time.time()-start_time}s")
+                print(f"Letters skipped: {num_skipped[0]} \n")
             if should_skip(letters):
                 num_skipped[0] += 1
                 return
