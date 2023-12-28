@@ -27,8 +27,8 @@ def main():
         solution, solutionwords = bruteforce.find_optimal_letters(alphabet, words)
         print(solution, "\n\n", solutionwords)
     elif selected_method == 2:
-        solution, solutionwords, maxes=nearest.find_good_letters(alphabet, words)
-        print(solutionwords, "\n", maxes, "\n\n", solution)
+        solution, solutionwords, maxes, averages=nearest.find_good_letters(alphabet, words)
+        print(solutionwords, "\n", maxes, "\n\n", averages, "\n\n", solution)
     elif selected_method == 3:
         best_letters = genetic_algorithm.do_genetic_algorithm(words, 100, 10000)
         print(best_letters)

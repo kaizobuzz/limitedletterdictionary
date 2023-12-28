@@ -21,4 +21,9 @@ def find_good_letters(letters, words):
             i2+=1
         subset.append(currentletter) 
         letters.pop(index)
-    return subset, wordlists, maxes
+    averages = [0.0]*len(maxes)
+    i=0
+    for max in maxes:
+        averages[i]=max/(i+1)
+        i+=1
+    return subset, wordlists, maxes, averages
