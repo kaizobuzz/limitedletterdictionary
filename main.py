@@ -7,7 +7,8 @@ def main():
     selected_dictionary = int(input("""
     === Please Select Your Dictionary ===
     1. 1000 most common English words
-    2. Official Scrabble Dictionary
+    2. Official English Scrabble Dictionary
+    3. Official French Scrabble Dictionary
     """))
 
     selected_method = int(input("""
@@ -19,7 +20,8 @@ def main():
     alphabet="abcdefghijklmnopqrstuvwxyz"
     wordlistfilenames = {
         1: "words.txt",
-        2: "scrabble.txt"
+        2: "scrabble.txt",
+        3: "french_scrabble.txt"
     }
     words = wordlist.get_wordlist_from_file(name=wordlistfilenames[selected_dictionary])
 
