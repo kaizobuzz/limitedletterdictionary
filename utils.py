@@ -87,3 +87,6 @@ def int_as_input(message):
         except ValueError:
             print("That wasn't a valid integer, try again \n")
     return x
+
+def alphabet(): 
+    return "abcdefghijklmnopqrstuvwxyz"
