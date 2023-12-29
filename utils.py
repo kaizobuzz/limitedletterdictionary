@@ -79,4 +79,11 @@ class LRUCache:
             del self.cache[deadnode.key]
             self.size-=1
 
-
+def int_as_input(message):
+    x = 0
+    while True:
+        try: 
+            x = int(input(message))
+        except ValueError:
+            print("That wasn't a valid integer, try again \n")
+    return x

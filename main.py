@@ -2,21 +2,22 @@ import wordlist
 import bruteforce
 import nearest
 import genetic_algorithm
+import utils
 
 def main():
-    selected_dictionary = int(input("""
+    selected_dictionary = utils.int_as_input("""
     === Please Select Your Dictionary ===
     1. 1000 most common English words
     2. Official English Scrabble Dictionary
     3. Official French Scrabble Dictionary
-    """))
+    """)
 
-    selected_method = int(input("""
+    selected_method = utils.int_as_input("""
     === Please Select Method ===
     1. Brute Force
     2. Nearest Neighbor Search
     3. Genetic Algorithm
-    """))
+    """)
     alphabet="abcdefghijklmnopqrstuvwxyz"
     wordlistfilenames = {
         1: "words.txt",
