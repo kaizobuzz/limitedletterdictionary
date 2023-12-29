@@ -3,7 +3,8 @@ import bruteforce
 import nearest
 import genetic_algorithm
 import utils
-
+import postprocessing
+import time
 def main():
     selected_dictionary = utils.int_as_input("""
     === Please Select Your Dictionary ===
@@ -47,9 +48,15 @@ def main():
                 combinedmaxes[i]=maxesbw[i]
                 combinedaverages[i]=averagesbw[i]
                 combinedsolution[i]=''.join(solutionbw)[:i+1:]
-        print(f"Combined solution:\nNum of words: {combinedmaxes}\n\nScore: {combinedaverages}\n\n Subsets: {combinedsolution}\n")
-
-
+        print(f"Combined solution:\nNum of words: {combinedmaxes}\n\nScore: {combinedaverages}\n\n Subsets: {combinedsolution}\n\n")
+        print("Starting postprocessing... doing 1_opt switch\n")
+        start_time=time.time()
+        for i in range(len(combinedsolution)):
+            combinedsolution[i], combinedmaxes[i]=postprocessing.fore_minus_three_opt(
+            list(combinedsolution[i]), combinedmaxes[i], list(alphabet), bitfields)
+            combinedaverages[i]=combinedmaxes[i]/(i+1)
+        print(f"Time taken: {time.time()-start_time}s\n")
+        print(f"Combined solution:\nNum of words: {combinedmaxes}\n\nScore: {combinedaverages}\n\n Subsets: {combinedsolution}\n\n")
     elif selected_method == 3:
         num_agents=100
         iterations=10000
