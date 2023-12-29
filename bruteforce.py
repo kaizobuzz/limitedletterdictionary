@@ -7,11 +7,11 @@ def should_skip(letters):
         return True
     return False
 
-def find_optimal_letters(letters, words):  
+def find_optimal_letters(letters, bitfields):  
     start_time=time.time()
-    max = [0]*len(letters)
+    maxes = [0]*len(letters)
+    averages = [0.0]*len(letters)
     solutions = [""]*len(letters)
-    wordlists = [[]]*len(letters)
     subset = []
     count = [0]
     num_skipped = [0]
@@ -19,10 +19,8 @@ def find_optimal_letters(letters, words):
         if i>=len(letters):
             count[0]+=1
             #just a printing statement
-            if count[0]%10000==0:
-                if count[0]%100000==0:
-                    print("\n\n", wordlists, "\n\n")
-                print(f"maxes: {max}, \n\nsolutions: {solutions} \n\nprogress: {count[0]/(2**26)}")
+            if count[0]%10000==0: 
+                print(f"maxes: {maxes}, \n\nsolutions: {solutions} \n\nprogress: {(count[0]/(2**26))*100}%")
                 print(f"time spent so far: {time.time()-start_time}s")
                 print(f"Letters skipped: {num_skipped[0]} \n")
             if should_skip(letters):
@@ -30,12 +28,11 @@ def find_optimal_letters(letters, words):
                 return
             setlength=len(subset)-1
             subsetstr=''.join(subset)
-            tempwords=utils.filter_words_by_subset(subsetstr, words)
+            tempwords=utils.check_against_bitfields(subsetstr, bitfields)
             #something here to account for weights 
-            if len(tempwords)>max[setlength]:
+            if tempwords>maxes[setlength]:
                 solutions[setlength]=subsetstr
-                max[setlength]=len(tempwords)
-                wordlists[setlength]=tempwords
+                maxes[setlength]=tempwords
             return
         subset.append(letters[i])
         dfs(i+1)
@@ -43,7 +40,9 @@ def find_optimal_letters(letters, words):
         dfs(i+1)
 
     dfs(0)
-    return solutions, wordlists
+    for i, max in enumerate(maxes):
+        averages[i]=max/(i+1)
+    return solutions, maxes, averages
          
 
 

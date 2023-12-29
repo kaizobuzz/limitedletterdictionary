@@ -27,14 +27,29 @@ def main():
     words = wordlist.get_wordlist_from_file(name=wordlistfilenames[selected_dictionary])
     bitfields = wordlist.create_bitfields(words)
     if selected_method == 1:
-        solution, solutionwords = bruteforce.find_optimal_letters(alphabet, words)
-        print(solution, "\n\n", solutionwords)
+        solution, maxes, averages = bruteforce.find_optimal_letters(alphabet, bitfields)
+        print(f"Num of words: {maxes}\n\nScore: {averages}\n\nSolutions: {solution}")
     elif selected_method == 2:
-        solution, solutionwords, maxes, averages=nearest.find_good_letters(alphabet, words)
+        solution, maxes, averages=nearest.find_good_letters(alphabet, bitfields)
         #print(solutionwords, "\n") 
-        print(f"Num of words: {maxes}\n\nScore: {averages}\n\nLetter Order: {solution}\n")
-        solution, maxes, averages=nearest.find_good_letters_reverse(alphabet, words)
-        print(f"Num of words: {maxes}\n\nScore: {averages}\n\nLetter Order: {solution}\n")
+        print(f"Forwards solution:\nNum of words: {maxes}\n\nScore: {averages}\n\nLetter Order: {solution}\n")
+        solutionbw, maxesbw, averagesbw=nearest.find_good_letters_reverse(alphabet, bitfields)
+        print(f"Backwards solution:\nNum of words: {maxesbw}\n\nScore: {averagesbw}\n\nLetter Order: {solutionbw}\n")
+        combinedsolution=['']*26
+        combinedmaxes=[0]*26
+        combinedaverages=[0.0]*26
+        for i in range(len(maxes)):
+            if maxes[i]>=maxesbw[i]:
+                combinedmaxes[i]=maxes[i]
+                combinedaverages[i]=averages[i]
+                combinedsolution[i]=''.join(solution)[:i+1:]
+            else:
+                combinedmaxes[i]=maxesbw[i]
+                combinedaverages[i]=averagesbw[i]
+                combinedsolution[i]=''.join(solutionbw)[:i+1:]
+        print(f"Combined solution:\nNum of words: {combinedmaxes}\n\nScore: {combinedaverages}\n\n Subsets: {combinedsolution}\n")
+
+
     elif selected_method == 3:
         num_agents=100
         iterations=10000
