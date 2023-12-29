@@ -3,6 +3,7 @@ import bruteforce
 import nearest
 import genetic_algorithm
 import utils
+import genetic_algorithm_fixed_size
 
 def main():
     selected_dictionary = utils.int_as_input("""
@@ -17,6 +18,7 @@ def main():
     1. Brute Force
     2. Nearest Neighbor Search
     3. Genetic Algorithm
+    4. Genetic Algorithm (Fixed Size Version)
     """)
     alphabet="abcdefghijklmnopqrstuvwxyz"
     wordlistfilenames = {
@@ -55,7 +57,13 @@ def main():
         iterations=10000
         best_letters = genetic_algorithm.do_genetic_algorithm(bitfields, num_agents, iterations)
         print(best_letters)
-
+    
+    elif selected_method == 4:
+        num_agents = 100
+        iterations = 100
+        size = utils.int_as_input("Choose the size of the set to be generated\n")
+        letter_list = genetic_algorithm_fixed_size.do_genetic_algorithm(bitfields, num_agents, iterations, size)
+        print(letter_list)
     input("Press enter to close...")
 
 if __name__ == "__main__":
