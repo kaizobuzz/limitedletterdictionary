@@ -84,6 +84,7 @@ def int_as_input(message):
     while True:
         try: 
             x = int(input(message))
+            break
         except ValueError:
             print("That wasn't a valid integer, try again \n")
     return x
