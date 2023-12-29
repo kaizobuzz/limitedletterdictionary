@@ -74,4 +74,4 @@ def do_genetic_algorithm(bitfields, num_agents, iterations, size):
         print(f"Time since start: {time.time()-start_time}s")
         print(f"Time since last iteration: {time.time()-iteration_start_time}s")
     agents.sort(key=sorting_key, reverse=True)
-    return agents[0].get_letter_list()
+    return agents[0].get_letter_list(), best_score

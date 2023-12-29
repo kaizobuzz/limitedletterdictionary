@@ -69,8 +69,15 @@ def main():
         num_agents = 100
         iterations = 100
         size = utils.int_as_input("Choose the size of the set to be generated\n")
-        letter_list = genetic_algorithm_fixed_size.do_genetic_algorithm(bitfields, num_agents, iterations, size)
+        letter_list, score = genetic_algorithm_fixed_size.do_genetic_algorithm(bitfields, num_agents, iterations, size)
+        num_words=score*size
         print(letter_list)
+        print("Starting postprocessing... doing 1_opt switch")
+        start_time=time.time()
+        letter_list, num_words=postprocessing.fore_minus_three_opt(
+                list(letter_list), num_words, list(alphabet), bitfields)
+        print(f"Time taken: {time.time()-start_time}s\n")
+        print(f"Letter list: {letter_list}\nNum of words: {num_words}\nScore: {score}\n")
     input("Press enter to close...")
 
 if __name__ == "__main__":
