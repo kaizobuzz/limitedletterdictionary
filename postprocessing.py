@@ -14,6 +14,7 @@ def fore_minus_three_opt(subset, max, letters, bitfields):
             if count>max:
                 return fore_minus_three_opt(subset, count, letters, bitfields)
         subset[i]=s_letter
+    subset.sort()
     return ''.join(subset), max
 
 def start_processing(subsets, num_words, scores, letters, bitfields):
