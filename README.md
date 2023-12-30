@@ -1,6 +1,9 @@
 # limitedletterdictionary
 uhm just a silly thing for now :3
 
+## How to run
+run ``main.py`` from within the directory it's located in.
+
 ## What's it for
 This was made to find the most number of words that could be created with a limited amount of letters.  
 ### Initial phrasing 
