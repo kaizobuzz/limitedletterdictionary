@@ -21,8 +21,9 @@ def main():
     3. Genetic Algorithm
     4. Genetic Algorithm (Fixed Size Version)
     5. Genetic Algorithm (Each Size)
-    """, 1, 5)
-    alphabet="abcdefghijklmnopqrstuvwxyz"
+    6. Just enter a subset and get the wordlist
+    """, 1, 6)
+    alphabet=utils.alphabet()
     wordlistfilenames = {
         1: "words.txt",
         2: "scrabble.txt",
@@ -90,6 +91,18 @@ def main():
         letter_lists, num_words, scores, alphabet, bitfields)
         print(f"Letter lists: {letter_lists}\nNum of words: {num_words}\nScores: {scores}\n")
         utils.ask_for_wordlist_number(letter_lists, words)
+    elif selected_method == 6:
+        while True:
+            validinput=True
+            subset=input('Please enter a subset:\n')
+            for letter in subset:
+                if letter not in alphabet:
+                    validinput=False
+            if validinput==True:
+                print(utils.filter_words_by_subset(subset, words))                
+                break
+            else:
+                print("Invalid input, please have all of your input be between \'a\' and \'z\'")
     input("Press enter to close...")
 
 if __name__ == "__main__":
