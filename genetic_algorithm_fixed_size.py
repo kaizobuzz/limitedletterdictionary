@@ -29,6 +29,8 @@ class FixedSizeAgent:
         return self
 
 def do_genetic_algorithm(bitfields, num_agents, iterations, size):
+    if size==len(utils.alphabet()):
+        return utils.alphabet(), len(bitfields)/len(utils.alphabet())   
     cache_capacity=500
     min_agents = 2
     start_time = time.time()
